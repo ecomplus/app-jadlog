@@ -1,4 +1,4 @@
-# E-Com Plus Jadlog
+# App Jadlog
 
 [![Deploy](https://github.com/ecomplus/app-jadlog/workflows/Deploy/badge.svg)](https://github.com/ecomplus/app-jadlog/actions?workflow=Deploy)  [![License MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
