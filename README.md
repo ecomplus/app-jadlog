@@ -1,10 +1,10 @@
-# E-Com Plus Application Starter
+# E-Com Plus Jadlog
 
-[![Deploy](https://github.com/ecomplus/application-starter/workflows/Deploy/badge.svg)](https://github.com/ecomplus/application-starter/actions?workflow=Deploy)  [![License MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Deploy](https://github.com/ecomplus/app-jadlog/workflows/Deploy/badge.svg)](https://github.com/ecomplus/app-jadlog/actions?workflow=Deploy)  [![License MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-:dog: Boilerplate for E-Com Plus apps with [Firebase](https://firebase.google.com/) Cloud Functions and GitHub Actions.
+E-Com Plus app for direct integration with Jadlog carrier
 
-[CHANGELOG](https://github.com/ecomplus/application-starter/blob/master/CHANGELOG.md)
+[CHANGELOG](https://github.com/ecomplus/app-jadlog/blob/master/CHANGELOG.md)
 
 ## Getting started
 
