@@ -78,6 +78,21 @@ const app = {
             type: 'string',
             maxLength: 50,
             title: 'Contrato'
+          },
+          insurance_type: {
+            type: 'string',
+            enum: [
+              'Normal',
+              'Apólice própria'
+            ],
+            default: 'Normal',
+            title: 'Tipo de seguro'
+          },
+          collection_cost: {
+            type: 'number',
+            minimum: 0,
+            maximum: 999999,
+            title: 'Valor da coleta'
           }
         }
       },
@@ -173,7 +188,7 @@ const app = {
     shipping_rules: {
       schema: {
         title: 'Regras de envio',
-        description: 'Aplicar descontos/adicionais condicionados ou desabilitar regiões',
+        description: 'Aplicar descontos/adicionais condicionados',
         type: 'array',
         maxItems: 300,
         items: {
