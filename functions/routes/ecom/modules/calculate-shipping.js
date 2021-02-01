@@ -376,6 +376,7 @@ exports.post = ({ appSdk }, req, res) => {
       })
 
       .catch(err => {
+        console.error(err)
         // unexpected ws response
         res.status(409).send({
           error: 'CALCULATE_UNEXPECTED_RSP',
