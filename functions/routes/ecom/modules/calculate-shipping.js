@@ -172,6 +172,9 @@ exports.post = ({ appSdk }, req, res) => {
         }
       }
     }
+    if (!serviceCodes || !serviceCodes.length) {
+      serviceCodes = ['.PACKAGE', '.COM']
+    }
 
     const data = {
       frete: serviceCodes.map(serviceCode => {
