@@ -100,7 +100,7 @@ const app = {
     },
     services: {
       schema: {
-        title: 'Serviços de entrega via Jadlog',
+        title: 'Modalidades de envio via Jadlog',
         type: 'array',
         maxItems: 4,
         items: {
