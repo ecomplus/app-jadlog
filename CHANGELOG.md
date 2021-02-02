@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.0.0 (2021-02-02)
+
+
+### Features
+
+* **calculate-shipping:** finish handling shipping calculation and parse from jadlog ws ([1735b56](https://github.com/ecomplus/application-starter/commit/1735b565d5f167ccff8ba77a085ca56ecd7066ef))
+* **ecom-config:** setup adming settings fields for contract and shipping rules config ([f1ca85e](https://github.com/ecomplus/application-starter/commit/f1ca85e5ffa658f6609a41271d7103d13f5de1ac))
+
+
+### Bug Fixes
+
+* **calculate-shipping:** fix handling jadlog services params ([5ac89f3](https://github.com/ecomplus/application-starter/commit/5ac89f3b06fa36b7fec891a49f8ca0227fb107d3))
+* **calculate-shipping:** set default service codes .PACKAGE and .COM ([4fed1e7](https://github.com/ecomplus/application-starter/commit/4fed1e7817916f3438db7eac3394904c7c235994))
+* **ecom-config:** update admin settings with new jadlog contract options ([bd3590f](https://github.com/ecomplus/application-starter/commit/bd3590f86f1ff4e0c6af973c8c97fa76fb439e39))
+
 ## [1.0.0-starter.16](https://github.com/ecomplus/application-starter/compare/v1.0.0-starter.15...v1.0.0-starter.16) (2020-11-05)
 
 
