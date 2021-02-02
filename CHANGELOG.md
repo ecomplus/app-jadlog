@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/ecomplus/application-starter/compare/v1.0.0...v1.0.1) (2021-02-02)
+
+
+### Bug Fixes
+
+* **calculate-shipping:** edit cubic weight coefficient to 6000 (international standard) ([9554a2f](https://github.com/ecomplus/application-starter/commit/9554a2fdbaf1a3d51aeae112b4e8af1fd6440022))
+
 ## 1.0.0 (2021-02-02)
 
 
