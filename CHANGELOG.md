@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/ecomplus/application-starter/compare/v1.1.0...v1.1.1) (2021-02-02)
+
+
+### Bug Fixes
+
+* **admin-settings:** set 'Apólice própria' as default insurance type ([f0d7aa9](https://github.com/ecomplus/application-starter/commit/f0d7aa90102e2fcb062758bcd122dbe51299f06c))
+* **calculate-shipping:** fix handling jadlog contract object and doc number string ([234a726](https://github.com/ecomplus/application-starter/commit/234a726719eb472ff51b3f1cc286bf3974e45a42))
+
 ## [1.1.0](https://github.com/ecomplus/application-starter/compare/v1.0.1...v1.1.0) (2021-02-02)
 
 
