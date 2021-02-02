@@ -47,6 +47,12 @@
             "maxLength": 50,
             "title": "Contrato"
           },
+          "doc_number": {
+            "type": "string",
+            "maxLength": 14,
+            "title": "CNPJ do contratante",
+            "description": "Usado para vincular tabela de frete especial (apenas números)"
+          },
           "insurance_type": {
             "type": "string",
             "enum": [
@@ -241,5 +247,5 @@
     }
   },
   "auth_callback_uri": "https://us-central1-ecom-jadlog.cloudfunctions.net/app/ecom/auth-callback",
-  "version": "1.0.1"
+  "version": "1.1.0"
 }
