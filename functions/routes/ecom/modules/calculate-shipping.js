@@ -141,7 +141,8 @@ exports.post = ({ appSdk }, req, res) => {
         }
 
         // calculate cubic weight
-        // (C x L x A) / 3.333
+        // http://blog.encaminhei.com/logistica-transporte/valor-do-frete-pela-jadlog/
+        // (C x L x A) / 6.000
         for (const side in sumDimensions) {
           if (sumDimensions[side]) {
             cubicWeight = cubicWeight > 0
@@ -151,7 +152,7 @@ exports.post = ({ appSdk }, req, res) => {
           }
         }
         if (cubicWeight > 0) {
-          cubicWeight /= 3333
+          cubicWeight /= 6000
         }
       }
       if (!appData.free_no_weight_shipping || physicalWeight > 0) {
