@@ -277,7 +277,13 @@ exports.post = ({ appSdk }, req, res) => {
                   days: 3,
                   ...appData.posting_deadline
                 },
-                flags: ['jadlog-ws']
+                flags: ['jadlog-ws'],
+                custom_fields: [{
+                  field: 'jadlog_ws_params',
+                  value: JSON.stringify(jadlogParams)
+                    .replace(/"(contrato|conta)":([^,]+)/g, '"$1":"*"')
+                    .slice(0, 255)
+                }]
               }
 
               // check for default configured additional/discount price
