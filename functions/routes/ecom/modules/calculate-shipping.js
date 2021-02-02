@@ -217,7 +217,7 @@ exports.post = ({ appSdk }, req, res) => {
         vldeclarado: vldeclarado > 0 ? Math.round(vldeclarado * 100) / 100 : 10,
         frap: 'N',
         tpentrega: 'D',
-        tpseguro: jadlogContract.insurance_type === 'Apólice própria' ? 'A' : 'N',
+        tpseguro: jadlogContract.insurance_type === 'Normal' ? 'N' : 'A',
         conta: jadlogContract.account,
         contrato: jadlogContract.contract,
         cnpj: jadlogContract.doc_number ? jadlogContract.doc_number.replace(/\D/g, '') : null,

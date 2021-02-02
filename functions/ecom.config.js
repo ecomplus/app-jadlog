@@ -91,7 +91,7 @@ const app = {
               'Normal',
               'Apólice própria'
             ],
-            default: 'Normal',
+            default: 'Apólice própria',
             title: 'Tipo de seguro'
           },
           collection_cost: {
