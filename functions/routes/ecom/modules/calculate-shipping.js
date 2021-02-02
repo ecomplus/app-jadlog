@@ -215,11 +215,12 @@ exports.post = ({ appSdk }, req, res) => {
         cepdes,
         peso: peso > 0.1 ? Math.round(peso * 100) / 100 : 0.1,
         vldeclarado: vldeclarado > 0 ? Math.round(vldeclarado * 100) / 100 : 10,
-        frap: null,
+        frap: 'N',
         tpentrega: 'D',
         tpseguro: jadlogContract.insurance_type === 'Apólice própria' ? 'A' : 'N',
         conta: jadlogContract.account,
         contrato: jadlogContract.contract,
+        cnpj: jadlogContract.doc_number ? jadlogContract.replace(/\D/g, '') : null,
         vlcoleta: jadlogContract.collection_cost || 0
       }
     })
@@ -281,7 +282,7 @@ exports.post = ({ appSdk }, req, res) => {
                 custom_fields: [{
                   field: 'jadlog_ws_params',
                   value: JSON.stringify(jadlogParams)
-                    .replace(/"(contrato|conta)":([^,]+)/g, '"$1":"*"')
+                    .replace(/"(contrato|conta|cnpj)":([^,]+)/g, '"$1":"*"')
                     .slice(0, 255)
                 }]
               }

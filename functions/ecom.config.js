@@ -79,6 +79,12 @@ const app = {
             maxLength: 50,
             title: 'Contrato'
           },
+          doc_number: {
+            type: 'string',
+            maxLength: 14,
+            title: 'CNPJ do contratante',
+            description: 'Usado para vincular tabela de frete especial (apenas números)'
+          },
           insurance_type: {
             type: 'string',
             enum: [
