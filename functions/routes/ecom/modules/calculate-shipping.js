@@ -220,7 +220,7 @@ exports.post = ({ appSdk }, req, res) => {
         tpseguro: jadlogContract.insurance_type === 'Apólice própria' ? 'A' : 'N',
         conta: jadlogContract.account,
         contrato: jadlogContract.contract,
-        cnpj: jadlogContract.doc_number ? jadlogContract.replace(/\D/g, '') : null,
+        cnpj: jadlogContract.doc_number ? jadlogContract.doc_number.replace(/\D/g, '') : null,
         vlcoleta: jadlogContract.collection_cost || 0
       }
     })
