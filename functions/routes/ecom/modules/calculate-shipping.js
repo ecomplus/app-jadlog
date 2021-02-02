@@ -176,59 +176,59 @@ exports.post = ({ appSdk }, req, res) => {
       serviceCodes = ['.PACKAGE', '.COM']
     }
 
-    const data = {
-      frete: serviceCodes.map(serviceCode => {
-        let modalidade
-        switch (serviceCode) {
-          case '.PACKAGE':
-            modalidade = 3
-            break
-          case 'RODOVIÁRIO':
-            modalidade = 4
-            break
-          case 'DOC':
-            modalidade = 6
-            break
-          case 'ECONÔMICO':
-            modalidade = 5
-            break
-          case 'CORPORATE':
-            modalidade = 7
-            break
-          case '.COM':
-            modalidade = 9
-            break
-          case 'CARGO':
-            modalidade = 12
-            break
-          case 'EMERGENCIAL':
-            modalidade = 14
-            break
-          default:
-            modalidade = 0
-            break
-        }
+    const jadlogServices = serviceCodes.map(serviceCode => {
+      let modalidade
+      switch (serviceCode) {
+        case '.PACKAGE':
+          modalidade = 3
+          break
+        case 'RODOVIÁRIO':
+          modalidade = 4
+          break
+        case 'DOC':
+          modalidade = 6
+          break
+        case 'ECONÔMICO':
+          modalidade = 5
+          break
+        case 'CORPORATE':
+          modalidade = 7
+          break
+        case '.COM':
+          modalidade = 9
+          break
+        case 'CARGO':
+          modalidade = 12
+          break
+        case 'EMERGENCIAL':
+          modalidade = 14
+          break
+        default:
+          modalidade = 0
+          break
+      }
 
-        return {
-          modalidade,
-          cepori,
-          cepdes,
-          peso: peso > 0.1 ? Math.round(peso * 100) / 100 : 0.1,
-          vldeclarado: vldeclarado > 0 ? Math.round(vldeclarado * 100) / 100 : 10,
-          frap: null,
-          tpentrega: 'D',
-          tpseguro: jadlogContract.insurance_type === 'Apólice própria' ? 'A' : 'N',
-          conta: jadlogContract.account,
-          contrato: jadlogContract.contract,
-          vlcoleta: jadlogContract.collection_cost || 0
-        }
-      })
-    }
+      return {
+        modalidade,
+        cepori,
+        cepdes,
+        peso: peso > 0.1 ? Math.round(peso * 100) / 100 : 0.1,
+        vldeclarado: vldeclarado > 0 ? Math.round(vldeclarado * 100) / 100 : 10,
+        frap: null,
+        tpentrega: 'D',
+        tpseguro: jadlogContract.insurance_type === 'Apólice própria' ? 'A' : 'N',
+        conta: jadlogContract.account,
+        contrato: jadlogContract.contract,
+        vlcoleta: jadlogContract.collection_cost || 0
+      }
+    })
 
     axios({
       url: 'http://www.jadlog.com.br/embarcador/api/frete/valor',
       method: 'post',
-      data,
+      data: {
+        frete: jadlogServices
+      },
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
@@ -237,11 +237,11 @@ exports.post = ({ appSdk }, req, res) => {
       timeout: 6000
     })
 
-      .then(({ data, config }) => {
+      .then(({ data }) => {
         if (data && Array.isArray(data.frete)) {
           data.frete.forEach(({ vltotal, error }, index) => {
             if (vltotal && !error) {
-              const jadlogParams = config.data.frete[index]
+              const jadlogParams = jadlogServices[index]
 
               // find respective configured service label
               const serviceCode = serviceCodes[index]
@@ -376,7 +376,9 @@ exports.post = ({ appSdk }, req, res) => {
       })
 
       .catch(err => {
-        console.error(err)
+        if (!err.response) {
+          console.error(err)
+        }
         // unexpected ws response
         res.status(409).send({
           error: 'CALCULATE_UNEXPECTED_RSP',
