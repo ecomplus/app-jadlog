@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/ecomplus/application-starter/compare/v1.0.1...v1.1.0) (2021-02-02)
+
+
+### Features
+
+* **calculate-shipping:** add jadlog params to shipping line response on custom fields ([30bf7f4](https://github.com/ecomplus/application-starter/commit/30bf7f496975fe7e0449a876274e63abafae4477))
+* **calculate-shipping:** set 'cnpj' on jadlog params and admin settings ([818372a](https://github.com/ecomplus/application-starter/commit/818372a6dc142690c7c38f8581c8b8b26640cb4f))
+
 ### [1.0.1](https://github.com/ecomplus/application-starter/compare/v1.0.0...v1.0.1) (2021-02-02)
 
 
