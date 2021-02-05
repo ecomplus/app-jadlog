@@ -4,7 +4,7 @@
   "slug": "jadlog",
   "type": "external",
   "state": "active",
-  "authentication": true,
+  "authentication": false,
   "modules": {
     "calculate_shipping": {
       "enabled": true,
