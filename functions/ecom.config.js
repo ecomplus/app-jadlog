@@ -374,6 +374,93 @@ const app = {
         }
       },
       hide: false
+    },
+    seller_info: {
+      schema: {
+        type: 'object',
+        title: 'Dados para envio de etiquta',
+        description: 'Configure informações para que seja enviado etiqueta',
+        properties: {
+          doc_number: {
+            type: 'string',
+            maxLength: 20,
+            title: 'CPF/CNPJ sem pontuação do remetente'
+          },
+          name: {
+            type: 'string',
+            maxLength: 100,
+            title: 'Nome da empresa ou loja'
+          },
+          collect_type: {
+            type: 'string',
+            title: 'Tipe de coleta',
+            enum: [
+              'Sem coleta',
+              'Coleta',
+            ]
+          },
+          street: {
+            type: 'string',
+            maxLength: 200,
+            title: 'Digite a rua'
+          },
+          number: {
+            type: 'integer',
+            min: 1,
+            max: 9999999,
+            title: 'Digite o número da residência'
+          },
+          complement: {
+            type: 'string',
+            maxLength: 100,
+            title: 'Complemento'
+          },
+          borough: {
+            type: 'string',
+            maxLength: 100,
+            title: 'Bairro'
+          },
+          city: {
+            type: 'string',
+            maxLength: 100,
+            title: 'Cidade'
+          },
+          province_code: {
+            type: 'string',
+            title: 'Sigla do Estado',
+            enum: [
+              'AC',
+              'AL',
+              'AP',
+              'AM',
+              'BA',
+              'CE',
+              'DF',
+              'ES',
+              'GO',
+              'MA',
+              'MT',
+              'MS',
+              'MG',
+              'PA',
+              'PB',
+              'PR',
+              'PE',
+              'PI',
+              'RR',
+              'RO',
+              'RJ',
+              'RS',
+              'RN',
+              'SC',
+              'SP',
+              'SE',
+              'TO'
+            ]
+          }
+        }
+      },
+      hide: true
     }
   }
 }
