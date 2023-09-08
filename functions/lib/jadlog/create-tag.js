@@ -33,7 +33,8 @@ module.exports = async (order, token, storeId, appData, appSdk, auth) => {
         totValor: order.amount && order.amount.total || 1,
         tpColeta,
         nrContrato: jadlog_contract.contract,
-        contaCorrente: jadlog_contract.account
+        contaCorrente: jadlog_contract.account,
+        vlColeta: jadlog_contract.collection_cost
     }
     data.des = {}
     data.rem = {}
@@ -70,7 +71,7 @@ module.exports = async (order, token, storeId, appData, appSdk, auth) => {
             if (from) {
                 if (seller_info) {
                     data.rem.nome = seller_info.name
-                    data.rem.cnpjCpf = seller_info.doc_number
+                    data.rem.cnpjCpf = jadlog_contract.doc_number
                     data.rem.endereco = seller_info.street
                     data.rem.numero = String(seller_info.number) || 'S/N',
                         data.rem.compl = seller_info.complement,
@@ -137,7 +138,7 @@ module.exports = async (order, token, storeId, appData, appSdk, auth) => {
             headers
         }
     ).then(({ data }) => {
-        console.log('> Jadlog created tag', data.status, data.shipmentId)
+        console.log('>> Jadlog created tag', data.status, data.shipmentId)
         if (data.shipmentId) {
             return appSdk.apiRequest(
                 storeId,

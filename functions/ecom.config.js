@@ -388,13 +388,8 @@ const app = {
       schema: {
         type: 'object',
         title: 'Dados para envio de etiquta',
-        description: 'Configure informações para que seja enviado etiqueta',
+        description: 'Configure informações para etiqueta',
         properties: {
-          doc_number: {
-            type: 'string',
-            maxLength: 14,
-            title: 'CPF/CNPJ somente números do remetente'
-          },
           name: {
             type: 'string',
             maxLength: 60,
