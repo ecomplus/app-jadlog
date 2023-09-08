@@ -157,7 +157,7 @@ const app = {
         type: 'boolean',
         default: false,
         title: 'Ativar envio de pedido para jadlog',
-        description: 'Pedido será enviado quando o status mudar para pronto para envio'
+        description: 'Pedido será enviado quando o status mudar para Pronto Para Envio'
       },
       hide: false
     },
