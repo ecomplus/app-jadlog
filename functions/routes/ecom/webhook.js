@@ -19,7 +19,7 @@ exports.post = ({ appSdk }, req, res) => {
   const trigger = req.body
   console.log(`Trigger from #${storeId} - ${trigger.resource}`)
   // get app configured options
-  getAppData({ appSdk, storeId })
+  getAppData({ appSdk, storeId, auth })
     .then(appData => {
       if (
         Array.isArray(appData.ignore_triggers) &&
@@ -33,7 +33,6 @@ exports.post = ({ appSdk }, req, res) => {
       
       const sellerInfo = appData.seller_info
       const jadlogContract = appData.jadlog_contract || {}
-      console.log(`Trigger from #${storeId} - ${trigger.resource}`, JSON.stringify(trigger))
 
 
       if (!(jadlogContract.token && sellerInfo)) {
