@@ -2,6 +2,7 @@
 const getAppData = require('./../../lib/store-api/get-app-data')
 // create tag to jadlog
 const createTag = require('./../../lib/jadlog/create-tag')
+const { auth } = require('firebase-admin')
 
 const SKIP_TRIGGER_NAME = 'SkipTrigger'
 const ECHO_SUCCESS = 'SUCCESS'
@@ -19,7 +20,8 @@ exports.post = ({ appSdk }, req, res) => {
   const trigger = req.body
   console.log(`Trigger from #${storeId} - ${trigger.resource}`)
   // get app configured options
-  getAppData({ appSdk, storeId, auth })
+  appSdk.getAuth(storeId).then(auth => {
+    return getAppData({ appSdk, storeId, auth })
     .then(appData => {
       if (
         Array.isArray(appData.ignore_triggers) &&
@@ -93,4 +95,5 @@ exports.post = ({ appSdk }, req, res) => {
         })
       }
     })
+  }).catch(console.error)
 }
