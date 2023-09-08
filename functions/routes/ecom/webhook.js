@@ -17,7 +17,7 @@ exports.post = ({ appSdk }, req, res) => {
    * Ref.: https://developers.e-com.plus/docs/api/#/store/triggers/
    */
   const trigger = req.body
-
+  console.log(`Trigger from #${storeId} - ${trigger.resource}`)
   // get app configured options
   getAppData({ appSdk, storeId })
     .then(appData => {
@@ -33,6 +33,8 @@ exports.post = ({ appSdk }, req, res) => {
       
       const sellerInfo = appData.seller_info
       const jadlogContract = appData.jadlog_contract || {}
+      console.log(`Trigger from #${storeId} - ${trigger.resource}`, JSON.stringify(trigger))
+
 
       if (!(jadlogContract.token && sellerInfo)) {
         // must have configured origin zip code to continue
