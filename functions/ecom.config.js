@@ -152,6 +152,15 @@ const app = {
       },
       hide: false
     },
+    enable_tag: {
+      schema: {
+        type: 'boolean',
+        default: false,
+        title: 'Ativar envio de pedido para jadlog',
+        description: 'Pedido será enviado quando o status mudar para pronto para envio'
+      },
+      hide: false
+    },
     jadlog_contract: {
       schema: {
         title: 'Contrato',
@@ -383,17 +392,18 @@ const app = {
         properties: {
           doc_number: {
             type: 'string',
-            maxLength: 20,
-            title: 'CPF/CNPJ sem pontuação do remetente'
+            maxLength: 14,
+            title: 'CPF/CNPJ somente números do remetente'
           },
           name: {
             type: 'string',
-            maxLength: 100,
+            maxLength: 60,
             title: 'Nome da empresa ou loja'
           },
           collect_type: {
             type: 'string',
             title: 'Tipe de coleta',
+            default: 'Sem coleta',
             enum: [
               'Sem coleta',
               'Coleta',
@@ -401,28 +411,27 @@ const app = {
           },
           street: {
             type: 'string',
-            maxLength: 200,
+            maxLength: 80,
             title: 'Digite a rua'
           },
           number: {
-            type: 'integer',
-            min: 1,
-            max: 9999999,
+            type: 'string',
+            maxLength: 10,
             title: 'Digite o número da residência'
           },
           complement: {
             type: 'string',
-            maxLength: 100,
+            maxLength: 20,
             title: 'Complemento'
           },
           borough: {
             type: 'string',
-            maxLength: 100,
+            maxLength: 60,
             title: 'Bairro'
           },
           city: {
             type: 'string',
-            maxLength: 100,
+            maxLength: 60,
             title: 'Cidade'
           },
           province_code: {
@@ -457,6 +466,11 @@ const app = {
               'SE',
               'TO'
             ]
+          },
+          cfop: {
+            type: 'string',
+            maxLength: 4,
+            title: 'CFOP (caso emita nota fiscal)'
           }
         }
       },

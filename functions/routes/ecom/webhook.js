@@ -1,5 +1,7 @@
 // read configured E-Com Plus app data
 const getAppData = require('./../../lib/store-api/get-app-data')
+// create tag to jadlog
+const createTag = require('./../../lib/jadlog/create-tag')
 
 const SKIP_TRIGGER_NAME = 'SkipTrigger'
 const ECHO_SUCCESS = 'SUCCESS'
@@ -18,7 +20,6 @@ exports.post = ({ appSdk }, req, res) => {
 
   // get app configured options
   getAppData({ appSdk, storeId })
-
     .then(appData => {
       if (
         Array.isArray(appData.ignore_triggers) &&
@@ -29,11 +30,50 @@ exports.post = ({ appSdk }, req, res) => {
         err.name = SKIP_TRIGGER_NAME
         throw err
       }
+      
+      const sellerInfo = appData.seller_info
+      const jadlogContract = appData.jadlog_contract || {}
 
-      /* DO YOUR CUSTOM STUFF HERE */
+      if (!(jadlogContract.token && sellerInfo)) {
+        // must have configured origin zip code to continue
+        return res.status(409).send({
+          error: 'CALCULATE_ERR',
+          message: 'Contract and seller info is unset on app hidden data (merchant must configure the app)'
+        })
+      }
 
+      if (jadlogContract.token && sellerInfo && trigger.resource === 'orders' && appData.enable_tag) {
+        // handle order fulfillment status changes
+        const order = trigger.body
+        if (
+          order &&
+          order.fulfillment_status &&
+          order.fulfillment_status.current === 'ready_for_shipping'
+        ) {
+          // read full order body
+          return appSdk.apiRequest(storeId, `/orders/${trigger.resource_id}.json`, 'GET', null, auth)
+        }
+      }
+
+      // ignore current trigger
+      const err = new Error()
+      err.name = SKIP_TRIGGER_NAME
+      throw err
+    })
+
+    .then(({ response }) => {
+      // finally create manda bem tag parsing full order data
+      const order = response.data
+      console.log(`Shipping tag for #${storeId} ${order._id}`)
+      if (order && order.shipping_lines[0] && order.shipping_lines[0].app && order.shipping_lines[0].app.carrier.toLowerCase().indexOf('jadlog') === -1) {
+        return res.send(ECHO_SKIP)
+      }
+      return createTag(order, jadlogContract.token, storeId, appData, appSdk, auth)
+    })
+
+    .then(() => {
       // all done
-      res.send(ECHO_SUCCESS)
+      return res.send(ECHO_SUCCESS)
     })
 
     .catch(err => {
