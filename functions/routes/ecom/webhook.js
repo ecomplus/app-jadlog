@@ -58,7 +58,6 @@ exports.post = ({ appSdk }, req, res) => {
           order.fulfillment_status.current === 'ready_for_shipping'
         ) {
           // read full order body
-          console.log('waiting for order', JSON.stringify(order))
           return appSdk.apiRequest(storeId, `/orders/${trigger.resource_id}.json`, 'GET', null, auth)
         }
       }

@@ -5,14 +5,11 @@ const { logger } = require('firebase-functions')
 module.exports = async (order, token, storeId, appData, appSdk, auth) => {
     // create new shipping tag to Jadlog
     // https://www.jadlog.com.br/jadlog/arquivos/api_integracao.pdf
-    console.log('Send order tag', order._id, token)
     const headers = {
         'Content-Type': 'application/json',
         Accept: 'application/json',
         Authorization: 'Bearer ' + token
     }
-
-    console.log('Headers', JSON.stringify(headers))
 
     const { seller_info, zip, jadlog_contract } = appData
 
@@ -132,7 +129,7 @@ module.exports = async (order, token, storeId, appData, appSdk, auth) => {
             nrDoc: `DEC${order.number || order._id}`
         })
     }
-    console.log(`> Create tag for #${order._id}: ` + JSON.stringify(data))
+    console.log(`> Create tag for #${order._id}`)
     // send POST to generate JADLOG tag
     requests.push(axios.post(
         'https://www.jadlog.com.br/embarcador/api/pedido/incluir',
