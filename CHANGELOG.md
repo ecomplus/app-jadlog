@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/ecomplus/application-starter/compare/v1.1.1...v2.0.0) (2023-09-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* **ecom-config:** add authorization and procedures to get order and send to jadlog
+* **create-tag:** option to send order to jadlog
+
+### Features
+
+* **create-tag:** option to send order to jadlog ([55957b5](https://github.com/ecomplus/application-starter/commit/55957b56b8ea25c548139c5a579a7a6abff9c4a6))
+
+
+### Bug Fixes
+
+* **deps:** update @ecomplus/application-sdk to v1.15.5 firestore ([60471d7](https://github.com/ecomplus/application-starter/commit/60471d75aa0e2394d8bee6945b2ff0db00cc1383))
+* **deps:** update all non-major dependencies ([#1](https://github.com/ecomplus/application-starter/issues/1)) ([673a16e](https://github.com/ecomplus/application-starter/commit/673a16eafb394e99babf28c167a0dc152e987e6f))
+
+
+* **ecom-config:** add information to send order to jadlog ([3d54f9f](https://github.com/ecomplus/application-starter/commit/3d54f9f80a3284e93e8e6d4316654a69917c71fe))
+
 ### [1.1.1](https://github.com/ecomplus/application-starter/compare/v1.1.0...v1.1.1) (2021-02-02)
 
 
