@@ -139,6 +139,9 @@ module.exports = async (order, token, storeId, appData, appSdk, auth) => {
         }
     ).then(({ data }) => {
         console.log('>> Jadlog created tag', data.status, data.shipmentId)
+        if (data.etiqueta) {
+            console.log('Log etiqueta', JSON.stringify(data.etiqueta))
+        }
         if (data.shipmentId) {
             return appSdk.apiRequest(
                 storeId,
