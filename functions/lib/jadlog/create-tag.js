@@ -5,11 +5,14 @@ const { logger } = require('firebase-functions')
 module.exports = async (order, token, storeId, appData, appSdk, auth) => {
     // create new shipping tag to Jadlog
     // https://www.jadlog.com.br/jadlog/arquivos/api_integracao.pdf
+    console.log('Send order tag', order._id, token)
     const headers = {
         'Content-Type': 'application/json',
         Accept: 'application/json',
         Authorization: 'Bearer ' + token
     }
+
+    console.log('Headers', JSON.stringify(headers))
 
     const { seller_info, zip, jadlog_contract } = appData
 

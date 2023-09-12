@@ -54,6 +54,7 @@ exports.post = ({ appSdk }, req, res) => {
           order.fulfillment_status.current === 'ready_for_shipping'
         ) {
           // read full order body
+          console.log('waiting for order', JSON.stringify(order))
           return appSdk.apiRequest(storeId, `/orders/${trigger.resource_id}.json`, 'GET', null, auth)
         }
       }
@@ -84,7 +85,7 @@ exports.post = ({ appSdk }, req, res) => {
         // trigger ignored by app configuration
         res.send(ECHO_SKIP)
       } else {
-        // console.error(err)
+        console.log(err)
         // request to Store API with error response
         // return error status code
         res.status(500)
