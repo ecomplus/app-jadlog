@@ -20,7 +20,9 @@ exports.post = ({ appSdk }, req, res) => {
   const trigger = req.body
   console.log(`Trigger from #${storeId} - ${trigger.resource}`)
   // get app configured options
-  appSdk.getAuth(storeId).then(auth => {
+  let token, config, auth
+  appSdk.getAuth(storeId).then(_auth => {
+    auth = _auth
     return getAppData({ appSdk, storeId, auth })
     .then(appData => {
       if (
@@ -32,12 +34,14 @@ exports.post = ({ appSdk }, req, res) => {
         err.name = SKIP_TRIGGER_NAME
         throw err
       }
+      config = appData
       
-      const sellerInfo = appData.seller_info
-      const jadlogContract = appData.jadlog_contract || {}
+      const sellerInfo = config.seller_info
+      const jadlogContract = config.jadlog_contract || {}
+      token = jadlogContract.token
 
 
-      if (!(jadlogContract.token && sellerInfo)) {
+      if (!(token && sellerInfo)) {
         // must have configured origin zip code to continue
         return res.status(409).send({
           error: 'CALCULATE_ERR',
@@ -45,7 +49,7 @@ exports.post = ({ appSdk }, req, res) => {
         })
       }
 
-      if (jadlogContract.token && sellerInfo && trigger.resource === 'orders' && appData.enable_tag) {
+      if (token && sellerInfo && trigger.resource === 'orders' && config.enable_tag) {
         // handle order fulfillment status changes
         const order = trigger.body
         if (
@@ -72,7 +76,7 @@ exports.post = ({ appSdk }, req, res) => {
       if (order && order.shipping_lines[0] && order.shipping_lines[0].app && order.shipping_lines[0].app.carrier.toLowerCase().indexOf('jadlog') === -1) {
         return res.send(ECHO_SKIP)
       }
-      return createTag(order, jadlogContract.token, storeId, appData, appSdk, auth)
+      return createTag(order, token, storeId, config, appSdk, auth)
     })
 
     .then(() => {
