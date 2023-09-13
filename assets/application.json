@@ -295,13 +295,18 @@
             "maxLength": 60,
             "title": "Nome da empresa ou loja"
           },
+          "cdUnidadeOri": {
+            "type": "string",
+            "maxLength": 9,
+            "title": "Código da agência de origem"
+          },
           "collect_type": {
             "type": "string",
-            "title": "Tipe de coleta",
-            "default": "Sem coleta",
+            "title": "Tipo da solicitação",
+            "default": "solicitacao eletronica (aguardando remessa fisica)",
             "enum": [
-              "Sem coleta",
-              "Coleta"
+              "solicitacao eletronica (aguardando remessa fisica)",
+              "solicitacao de coleta no remetente"
             ]
           },
           "street": {
