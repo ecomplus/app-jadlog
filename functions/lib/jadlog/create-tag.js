@@ -25,13 +25,15 @@ module.exports = async (order, token, storeId, appData, appSdk, auth) => {
 
     const formatZipCode = str => str.replace(/\D/g, '').padStart(8, '0')
 
-    const tpColeta = seller_info && seller_info.collect_type.toLowerCase() === 'coleta' ? 'K' : 'S'
+    const tpColeta = seller_info && seller_info.collect_type.toLowerCase() === 'solicitacao de coleta no remetente' ? 'K' : 'S'
+    const { cdUnidadeOri } = seller_info
 
     const data = {
         conteudo: order.items && order.items.length && order.items[0] && order.items[0].name.slice(0, 80) || 'Produto Diverso',
         pedido: [String(order.number || order._id)],
         totValor: order.amount && order.amount.total || 1,
         tpColeta,
+        cdUnidadeOri,
         nrContrato: jadlog_contract.contract,
         contaCorrente: jadlog_contract.account,
         vlColeta: jadlog_contract.collection_cost
