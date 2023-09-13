@@ -20,7 +20,7 @@ module.exports = async (order, token, storeId, appData, appSdk, auth) => {
             err.response = error.response.data
         }
         err.request = error.config
-        logger.error(err)
+        logger.error(err || error)
     }
 
     const formatZipCode = str => str.replace(/\D/g, '').padStart(8, '0')
