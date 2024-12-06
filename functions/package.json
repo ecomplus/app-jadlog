@@ -10,15 +10,15 @@
     "logs": "firebase functions:log"
   },
   "engines": {
-    "node": "14"
+    "node": "14.21.3"
   },
   "dependencies": {
-    "@ecomplus/application-sdk": "^22.0.0-firestore.1.15.5",
+    "@ecomplus/application-sdk": "^22.0.0-firestore.1.15.7",
     "@google-cloud/firestore": "^4.15.1",
-    "axios": "^0.23.0",
-    "express": "^4.17.1",
+    "axios": "^0.29.0",
+    "express": "^4.21.2",
     "firebase-admin": "^9.12.0",
-    "firebase-functions": "^3.15.7"
+    "firebase-functions": "^3.24.1"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
