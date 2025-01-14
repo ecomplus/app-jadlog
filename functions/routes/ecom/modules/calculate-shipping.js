@@ -226,7 +226,7 @@ exports.post = ({ appSdk }, req, res) => {
     })
 
     axios({
-      url: 'http://www.jadlog.com.br/embarcador/api/frete/valor',
+      url: 'https://www.jadlog.com.br/embarcador/api/frete/valor',
       method: 'post',
       data: {
         frete: jadlogServices
